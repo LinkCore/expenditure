@@ -20,54 +20,54 @@ class ExpenditureWidget extends StatelessWidget {
           }));
         },
         child: Container(
-          height: 70,
           padding: EdgeInsets.only(left: 16, right: 16),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey, width: 1),
+            border: Border.all(color: Color(0xFFe0e0e0), width: 1),
             borderRadius: BorderRadius.circular(15),
           ),
           margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20, bottom: 2),
+                child: Text(
+                  "${expenditure.spend}",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                 Container(
                   margin: EdgeInsets.only(left: 10, bottom: 2),
-                  child: Text(
-                    "${categoriesToString[expenditure.categories]} ",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10, top: 2),
                   child: Text(
                     "${expenditureTypeToString[expenditure.expenditureType]} ",
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                 ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10, bottom: 2),
+                      child: Text(
+                        "${categoriesToString[expenditure.categories]} ",
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Spacer(),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      margin: EdgeInsets.only(right: 20),
+                      child: Text(
+                        "${DateFormat('dd / MM / yyyy').format(expenditure.date)}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    )
               ]),
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 20, bottom: 2),
-                child: Text(
-                  "${expenditure.spend}",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Spacer(),
-              Container(
-                alignment: Alignment.bottomRight,
-                margin: EdgeInsets.only(right: 20),
-                child: Text(
-                  "${DateFormat('dd / MM / yyyy').format(expenditure.date)}",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              )
             ],
           ),
         ));

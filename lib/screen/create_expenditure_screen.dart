@@ -62,7 +62,6 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
 
   DateTime? dateExpenditure = DateTime.now();
 
-  
   @override
   void initState() {
     super.initState();
@@ -89,7 +88,8 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
-            child: Column(children: [
+            child: Column(
+                children: [
               Container(
                   height: 70,
                   padding: EdgeInsets.only(left: 16, right: 16),
@@ -103,7 +103,8 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
                       decoration: new InputDecoration(
                         labelText: "Потраченные срества:",
                       ),
-                      keyboardType: TextInputType.number)),
+                      keyboardType: TextInputType.number)
+              ),
               SizedBox(height: 10),
               Container(
                 height: 70,
@@ -114,12 +115,12 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
                 ),
                 child: DropdownButton<String>(
                   hint: Text("Выберите категорию:"),
-                  dropdownColor: Colors.white,
+                  dropdownColor: Color(0xFF2e2e2e),
                   icon: Icon(Icons.arrow_drop_down),
                   iconSize: 36,
                   isExpanded: true,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey,
                     fontSize: 16,
                   ),
                   value: categoryValue,
@@ -141,12 +142,13 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
                 ),
                 child: DropdownButton<String>(
                   hint: Text("Выберите тип:"),
-                  dropdownColor: Colors.white,
+                  dropdownColor: Color(0xFF2e2e2e),
+
                   icon: Icon(Icons.arrow_drop_down),
                   iconSize: 36,
                   isExpanded: true,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.grey,
                     fontSize: 16,
                   ),
                   value: typeValue,
@@ -160,7 +162,8 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
               ),
               SizedBox(height: 10),
               Container(
-                padding: EdgeInsets.only(left: 16, right: 16),
+                width: 480,
+                height: 40,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey, width: 1),
                   borderRadius: BorderRadius.circular(15),
@@ -174,12 +177,24 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
                         lastDate: DateTime(2025),
                       );
                       setState(() {
-                        dateExpenditure = date;
+                        if(date == null){
+                          date = DateTime.now();
+                        }
+                        else {
+                          dateExpenditure = date;
+                        }
                       });
                     },
                     child: Text(
-                      'Выберите день:' '${DateFormat('dd / MM / yyyy').format(dateExpenditure!)}',
-                      style: TextStyle(color: Colors.grey),
+                      'Выберите день:'
+                      '                                      '
+                      '${DateFormat('dd / MM / yyyy').format(dateExpenditure!)}',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
                     )),
               ),
             ]),
@@ -197,11 +212,13 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
               date: dateExpenditure as DateTime,
               categories: stringToCategories[categoryValue] as Categories,
               expenditureType:
-              expenditureStringToType[typeValue] as ExpenditureType);
+                  expenditureStringToType[typeValue] as ExpenditureType);
+
+          CreateExpenditureEvent createEvent = CreateExpenditureEvent(expenditure);
 
           context
               .read<ExpenditureBloc>()
-              .add(CreateExpenditureEvent(expenditure));
+              .add(createEvent);
           Navigator.of(context).pop();
         },
         child: Icon(Icons.assignment_turned_in_outlined),
@@ -209,4 +226,3 @@ class _CreateExpenditureScreenState extends State<CreateExpenditureScreen> {
     );
   }
 }
-

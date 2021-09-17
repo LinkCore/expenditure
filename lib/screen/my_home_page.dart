@@ -1,43 +1,55 @@
-import 'package:expenditure/bloc/expenditures/expenditures_bloc.dart';
-import 'package:expenditure/models/expenditure.dart';
-import 'package:expenditure/widgets/expenditure_widget.dart';
+import 'package:expenditure/screen/diagram_screen.dart';
+import 'package:expenditure/screen/expenditure_sceen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'create_expenditure_screen.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+  return _MyHomePageState();
+  }
+}
+
+
+class _MyHomePageState extends State<MyHomePage> {
+
+int _currentIndex = 0;
+List<Widget> _children = [
+  DiagramExpenditureScreen(),
+  ExpenditureWidgetScreen(),
+  CreateExpenditureScreen(),
+];
+
+void onTabTapped(int index){
+  setState((){
+    _currentIndex = index;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text("Expenditure Screen")),
-      body: BlocBuilder<ExpenditureBloc, List<Expenditure>>(
-        builder: (context, state) {
-          List<ExpenditureWidget> expenditureWidgetArray = [];
-          for(Expenditure exp in state){
-            expenditureWidgetArray.add(ExpenditureWidget(expenditure: exp));
-          }
-          return SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children:
-              expenditureWidgetArray
-            ),
-          );
-        }
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xFFffe89e),
-        onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-              return CreateExpenditureScreen();
-            }));
-            //expenditureArray.add(expenditure);
-        },
-        child: Icon(Icons.add),
-      ),
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
+      currentIndex: _currentIndex, // this will be set when a new tab is tapped
+      items: [
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.analytics_outlined),
+          title: new Text('Diagram'),
+        ),
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.list_sharp),
+          title: new Text('Expenditure'),
+        ),
+        BottomNavigationBarItem(
+          icon: new Icon(Icons.playlist_add_rounded),
+          title: new Text('Create'),
+        ),
+      ],
+    ),
     );
   }
 }
