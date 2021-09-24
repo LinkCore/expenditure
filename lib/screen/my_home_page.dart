@@ -2,8 +2,6 @@ import 'package:expenditure/screen/diagram_screen.dart';
 import 'package:expenditure/screen/expenditure_sceen.dart';
 import 'package:flutter/material.dart';
 
-import 'create_expenditure_screen.dart';
-
 class MyHomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -16,9 +14,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
 int _currentIndex = 0;
 List<Widget> _children = [
-  DiagramExpenditureScreen(),
+  PieChartSample2(),
   ExpenditureWidgetScreen(),
-  CreateExpenditureScreen(),
 ];
 
 void onTabTapped(int index){
@@ -43,10 +40,6 @@ void onTabTapped(int index){
         BottomNavigationBarItem(
           icon: new Icon(Icons.list_sharp),
           title: new Text('Expenditure'),
-        ),
-        BottomNavigationBarItem(
-          icon: new Icon(Icons.playlist_add_rounded),
-          title: new Text('Create'),
         ),
       ],
     ),
