@@ -25,16 +25,18 @@ class PieChart2State extends State {
       List<PieChartSectionData> diagramArrayWidget = [];
 
       Map<Categories, double> diagramData = {
-        Categories.PERMANENT: 0.0,
-        Categories.CLOTH: 0.0,
-        Categories.PRODUCT: 0.0,
-        Categories.TRANSPORT: 0.0,
-        Categories.ENTERTAINMENT: 0.0,
-        Categories.CAFE: 0.0,
-        Categories.HEALTH: 0.0,
-        Categories.FAMILY: 0.0,
-        Categories.PRESENTS: 0.0,
-        Categories.SAVE: 0.0
+        Categories.PERMANENT: 1.0,
+        Categories.CLOTH: 1.0,
+        Categories.PRODUCT: 1.0,
+        Categories.TRANSPORT: 1.0,
+        Categories.ENTERTAINMENT: 1.0,
+        Categories.CAFE: 1.0,
+        Categories.HEALTH: 1.0,
+        Categories.FAMILY: 1.0,
+        Categories.PRESENTS: 1.0,
+        Categories.SAVE: 1.0,
+        Categories.TAXI: 1.0,
+        Categories.OTHER: 1.0
       };
 
       for (Expenditure expend in context.read<ExpenditureBloc>().state) {
@@ -117,22 +119,7 @@ class PieChart2State extends State {
               children: const <Widget>[
                 Indicator(
                   color: Color(0xff0293ee),
-                  text: 'First',
-                  isSquare: true,
-                ),
-                Indicator(
-                  color: Color(0xfff8b250),
-                  text: 'Second',
-                  isSquare: true,
-                ),
-                Indicator(
-                  color: Color(0xff845bef),
-                  text: 'Third',
-                  isSquare: true,
-                ),
-                Indicator(
-                  color: Color(0xff13d38e),
-                  text: 'Fourth',
+                  text: "diagramData[Categories.values[i]]}",
                   isSquare: true,
                 ),
               ],
