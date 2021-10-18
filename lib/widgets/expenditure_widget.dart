@@ -2,6 +2,7 @@ import 'package:expenditure/models/categories.dart';
 import 'package:expenditure/models/expenditure.dart';
 import 'package:expenditure/models/type_expenditure.dart';
 import 'package:expenditure/screen/edit_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -26,48 +27,57 @@ class ExpenditureWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
               Container(
-                margin: EdgeInsets.only(left: 20, right: 20, bottom: 2),
-                child: Text(
-                  "${expenditure.spend}",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.left,
-                ),
+                child: Icon(categoriesToIcon[expenditure.categories]),
               ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                Container(
-                  margin: EdgeInsets.only(left: 10, bottom: 2),
-                  child: Text(
-                    "${expenditureTypeToString[expenditure.expenditureType]} ",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
                     Container(
-                      margin: EdgeInsets.only(left: 10, bottom: 2),
+                      margin: EdgeInsets.only(left: 20, right: 20, bottom: 2),
                       child: Text(
-                        "${categoriesToString[expenditure.categories]} ",
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                        "${expenditure.spend}",
+                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
                       ),
                     ),
-                    Spacer(),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      margin: EdgeInsets.only(right: 20),
-                      child: Text(
-                        "${DateFormat('dd / MM / yyyy').format(expenditure.date)}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 10, bottom: 2),
+                        child: Text(
+                          "${expenditureTypeToString[expenditure.expenditureType]} ",
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    )
-              ]),
+                          Container(
+                            margin: EdgeInsets.only(left: 10, bottom: 2),
+                            child: Text(
+                              "${categoriesToString[expenditure.categories]} ",
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Spacer(),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            margin: EdgeInsets.only(right: 20),
+                            child: Text(
+                              "${DateFormat('dd / MM / yyyy').format(expenditure.date)}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                    ]),
+                  ],
+                ),
+              ),
             ],
           ),
         ));
