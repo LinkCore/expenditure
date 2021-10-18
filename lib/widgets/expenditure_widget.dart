@@ -2,6 +2,7 @@ import 'package:expenditure/models/categories.dart';
 import 'package:expenditure/models/expenditure.dart';
 import 'package:expenditure/models/type_expenditure.dart';
 import 'package:expenditure/screen/edit_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -29,7 +30,7 @@ class ExpenditureWidget extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                child: Icon(Icons.add),
+                child: Icon(categoriesToIcon[expenditure.categories]),
               ),
               Expanded(
                 child: Column(

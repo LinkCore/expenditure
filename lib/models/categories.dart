@@ -75,4 +75,4 @@ Map<Categories, IconData> categoriesToIcon = {
   Categories.SAVE: Icons.save,
   Categories.TAXI: Icons.local_taxi,
   Categories.OTHER: Icons.devices_other
-}
+};
