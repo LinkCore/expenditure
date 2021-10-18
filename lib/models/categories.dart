@@ -61,3 +61,18 @@ Map<Categories, Color> categoriesToColor = {
   Categories.TAXI: Color(0xFF99ff99),
   Categories.OTHER: Color(0xFF99ffcc)
 };
+
+Map<Categories, IconData> categoriesToIcon = {
+  Categories.PERMANENT: Icons.refresh,
+  Categories.CLOTH: Icons.checkroom,
+  Categories.PRODUCT: Icons.production_quantity_limits,
+  Categories.TRANSPORT: Icons.directions_bus,
+  Categories.ENTERTAINMENT: Icons.attractions,
+  Categories.CAFE: Icons.local_cafe,
+  Categories.HEALTH: Icons.healing,
+  Categories.FAMILY: Icons.family_restroom,
+  Categories.PRESENTS: Icons.redeem,
+  Categories.SAVE: Icons.save,
+  Categories.TAXI: Icons.local_taxi,
+  Categories.OTHER: Icons.devices_other
+}
